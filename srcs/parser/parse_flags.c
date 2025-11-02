@@ -6,13 +6,13 @@
 /*   By: yusuzuki <yusuzuki@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 11:23:33 by yusuzuki          #+#    #+#             */
-/*   Updated: 2025/10/24 14:00:51 by yusuzuki         ###   ########.fr       */
+/*   Updated: 2025/11/02 19:35:14 by yusuzuki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-const char	*parse_flags(const char *fmt, t_format *fmt_info)
+const char	*parse_flags(const char *fmt, t_format_raw *fmt_info)
 {
 	while (*fmt == '-' || *fmt == '0' || *fmt == '#'\
 		|| *fmt == ' ' || *fmt == '+')
