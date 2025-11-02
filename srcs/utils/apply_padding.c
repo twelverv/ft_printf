@@ -6,7 +6,7 @@
 /*   By: yusuzuki <yusuzuki@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 20:28:00 by yusuzuki          #+#    #+#             */
-/*   Updated: 2025/11/02 22:36:48 by yusuzuki         ###   ########.fr       */
+/*   Updated: 2025/11/02 22:44:55 by yusuzuki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,11 @@ static size_t	get_padlen(size_t num_len, t_format fmt)
 	return (pad_len);
 }
 
-static size_t	padding_str(char dest, size_t count, char c)
+static size_t	fill_padding(char *dest, size_t count, char c, size_t pad_len)
 {
 	size_t	i;
-	size_t	pad_len;
 
 	i = count;
-	pad_len = get_padlen(len, fmt);
 	while (i < pad_len)
 	{
 		dest[i] = c;
@@ -39,12 +37,12 @@ static size_t	padding_str(char dest, size_t count, char c)
 	return (i);
 }
 
-static size_t	strcpy_and_len(char dest, const char src, size_t count)
+static size_t	copy_str_with_offset(char *dest, const char *src, size_t count)
 {
 	size_t	i;
 
 	i = 0;
-	while (src)
+	while (src[i])
 	{
 		dest[count + i] = src[i];
 		i ++;
@@ -71,10 +69,10 @@ char	*apply_padding(const char *str, t_format fmt)
 		return (NULL);
 	count = 0;
 	if (fmt.align == ALIGN_RIGHT)
-		count += padding_str(res, count, c);
-	count += strcpy_and_len(res, src, count);
+		count += fill_padding(res, count, c, pad_len);
+	count += copy_str_with_offset(res, str, count);
 	if (fmt.align == ALIGN_LEFT)
-		count += padding_str(res, count, c);
+		count += fill_padding(res, count, c, pad_len);
 	res[count] = '\0';
 	return (res);
 }
