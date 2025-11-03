@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_flags.c                                      :+:      :+:    :+:   */
+/*   print_string_with_format.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yusuzuki <yusuzuki@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/24 11:23:33 by yusuzuki          #+#    #+#             */
-/*   Updated: 2025/11/03 11:43:22 by yusuzuki         ###   ########.fr       */
+/*   Created: 2025/11/03 14:38:37 by yusuzuki          #+#    #+#             */
+/*   Updated: 2025/11/03 14:45:51 by yusuzuki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-const char	*parse_flags(const char *fmt, t_format_raw *fmt_info)
+int	print_string_with_format(const char *str, t_format fmt)
 {
-	while (*fmt == '-' || *fmt == '0' || *fmt == '#'\
-		|| *fmt == ' ' || *fmt == '+')
+	char	*res;
+	char	*tmp;
+	int		len;
+
+	res = format_string(str, fmt);
+	if (!res)
+		return (-1);
+	if (!res)
+		return (0);
+	len = ft_strlen(res);
+	tmp = res;
+	while (*tmp)
 	{
-		if (*fmt == '-')
-			fmt_info->flag_minus = 1;
-		else if (*fmt == '0')
-			fmt_info->flag_zero = 1;
-		else if (*fmt == '#')
-			fmt_info->flag_hash = 1;
-		else if (*fmt == ' ')
-			fmt_info->flag_space = 1;
-		else if (*fmt == '+')
-			fmt_info->flag_plus = 1;
-		fmt++;
+		write(1, tmp, 1);
+		tmp ++;
 	}
-	return (fmt);
+	free(res);
+	return (len);
 }

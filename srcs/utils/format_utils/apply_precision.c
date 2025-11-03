@@ -6,7 +6,7 @@
 /*   By: yusuzuki <yusuzuki@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 19:36:49 by yusuzuki          #+#    #+#             */
-/*   Updated: 2025/11/02 22:18:03 by yusuzuki         ###   ########.fr       */
+/*   Updated: 2025/11/03 14:18:09 by yusuzuki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static size_t	get_padlen(size_t num_len, t_format fmt)
 	return (pad_len);
 }
 
-static char	*strdup_with_sign(char *dest, const char src, char sign, \
+static char	*strdup_with_sign(char *dest, const char *src, char sign, \
 	size_t pad_len)
 {
 	size_t	i;

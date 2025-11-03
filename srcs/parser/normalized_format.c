@@ -6,7 +6,7 @@
 /*   By: yusuzuki <yusuzuki@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 18:18:56 by yusuzuki          #+#    #+#             */
-/*   Updated: 2025/11/02 19:29:43 by yusuzuki         ###   ########.fr       */
+/*   Updated: 2025/11/03 11:43:53 by yusuzuki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ t_format	normalized_format(t_format_raw raw)
 {
 	t_format	fmt;
 
+	ft_bzero(&fmt, sizeof(t_format));
 	if (raw.flag_minus)
 		fmt.align = ALIGN_LEFT;
 	else
