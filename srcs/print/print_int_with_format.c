@@ -6,7 +6,7 @@
 /*   By: yusuzuki <yusuzuki@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 14:43:05 by yusuzuki          #+#    #+#             */
-/*   Updated: 2025/11/03 14:51:41 by yusuzuki         ###   ########.fr       */
+/*   Updated: 2025/11/04 10:30:46 by yusuzuki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@ int	print_integer_with_format(int num, t_format fmt)
 {
 	char	*num_str;
 	char	*res;
-	size_t	len;
+	int		count;
 
+	count = 0;
 	num_str = ft_itoa(num);
 	if (!num_str)
 		return (-1);
@@ -25,8 +26,7 @@ int	print_integer_with_format(int num, t_format fmt)
 	if (!res)
 		return (-1);
 	free(num_str);
-	len = ft_strlen(res);
-	write(1, res, len);
+	count += write(1, res, ft_strlen(num_str));
 	free(res);
-	return (len);
+	return (count);
 }

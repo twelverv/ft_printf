@@ -6,7 +6,7 @@
 /*   By: yusuzuki <yusuzuki@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 14:55:11 by yusuzuki          #+#    #+#             */
-/*   Updated: 2025/11/03 14:57:14 by yusuzuki         ###   ########.fr       */
+/*   Updated: 2025/11/04 10:37:38 by yusuzuki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	print_unsigned_with_format(unsigned int num, t_format fmt)
 {
 	char	*num_str;
 	char	*res;
-	size_t	len;
+	int		count;
 
 	num_str = ft_utoa(num);
 	if (!num_str)
@@ -25,8 +25,7 @@ int	print_unsigned_with_format(unsigned int num, t_format fmt)
 	if (!res)
 		return (-1);
 	free(num_str);
-	len = ft_strlen(res);
-	write(1, res, len);
+	count += write(1, res, ft_strlen(num_str));
 	free(res);
-	return (len);
+	return (count);
 }

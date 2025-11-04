@@ -6,7 +6,7 @@
 /*   By: yusuzuki <yusuzuki@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 15:05:31 by yusuzuki          #+#    #+#             */
-/*   Updated: 2025/11/03 15:22:42 by yusuzuki         ###   ########.fr       */
+/*   Updated: 2025/11/04 10:31:56 by yusuzuki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,10 @@ int	print_pointer_with_format(void *ptr, t_format fmt)
 	char				*num_str;
 	char				*tmp;
 	char				*res;
-	size_t				len;
+	int					count;
 
 	addr = (unsigned long long)ptr;
+	count = 0;
 	num_str = ft_itoa_base(addr, 16, 0);
 	if (!num_str)
 		return (-1);
@@ -31,8 +32,7 @@ int	print_pointer_with_format(void *ptr, t_format fmt)
 	free(num_str);
 	if (!res)
 		return (-1);
-	len = ft_strlen(res);
-	write(1, res, len);
+	count += write(1, res, ft_strlen(num_str));
 	free(res);
-	return (len);
+	return (count);
 }

@@ -6,7 +6,7 @@
 /*   By: yusuzuki <yusuzuki@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 17:14:14 by yusuzuki          #+#    #+#             */
-/*   Updated: 2025/10/25 16:22:44 by yusuzuki         ###   ########.fr       */
+/*   Updated: 2025/11/04 10:19:27 by yusuzuki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,33 @@ int	apply_format(t_format fmt_info, va_list args)
 	return (0);
 }
 
+static int	handle_format(const char **fmt, va_list args)
+{
+	t_format_raw	fmt_raw;
+	t_format		fmt_info;
+	int				printed;
+
+	ft_bzero(&fmt_raw, sizeof(fmt_raw));
+	*fmt = parse_flags(*fmt, &fmt_raw);
+	*fmt = parse_width(*fmt, &fmt_raw, args);
+	*fmt = parse_precision(*fmt, &fmt_raw, args);
+	fmt_raw.specifier = **fmt;
+	if (!fmt_raw.specifier)
+		return (0);
+	fmt_info = normalized_format(fmt_raw);
+	printed = apply_format(fmt_info, args);
+	if (printed < 0)
+		return (-1);
+
+	return (printed);
+}
+
+
 int	ft_printf(const char *fmt, ...)
 {
-	va_list		args;
-	t_format	fmt_info;
-	int			count;
+	va_list	args;
+	int		printed;
+	int		count;
 
 	count = 0;
 	va_start(args, fmt);
@@ -47,12 +69,12 @@ int	ft_printf(const char *fmt, ...)
 		if (*fmt == '%')
 		{
 			fmt++;
-			init_format(&fmt_info);
-			fmt = parse_flags(fmt, &fmt_info);
-			fmt = parse_width(fmt, &fmt_info, args);
-			fmt = parse_precision(fmt, &fmt_info, args);
-			fmt_info.specifier = *fmt;
-			count += apply_format(fmt_info, args);
+			if (!*fmt)
+				break ;
+			printed = handle_format(&fmt, args);
+			if (printed < 0)
+				return (-1);
+			count += printed;
 		}
 		else
 			count += write(1, fmt, 1);

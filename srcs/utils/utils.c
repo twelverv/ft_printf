@@ -6,7 +6,7 @@
 /*   By: yusuzuki <yusuzuki@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 20:33:23 by yusuzuki          #+#    #+#             */
-/*   Updated: 2025/11/03 15:02:40 by yusuzuki         ###   ########.fr       */
+/*   Updated: 2025/11/04 10:24:18 by yusuzuki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,16 @@ char	*ft_itoa_base(unsigned long long n, int base, int uppercase)
 		n /= base;
 	}
 	return (res);
+}
+
+int	put_strlen(const char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		i ++;
+	}
+	return (i);
 }
