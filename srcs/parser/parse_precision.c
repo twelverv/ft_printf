@@ -6,14 +6,14 @@
 /*   By: yusuzuki <yusuzuki@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 11:37:37 by yusuzuki          #+#    #+#             */
-/*   Updated: 2025/10/25 13:05:45 by yusuzuki         ###   ########.fr       */
+/*   Updated: 2025/11/04 17:07:18 by yusuzuki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static const char	*parse_precision_value(const char *fmt, t_format *fmt_info, \
-		va_list args)
+static const char	*parse_precision_value(const char *fmt, \
+	t_format_raw *fmt_info, va_list args)
 {
 	if (*fmt == '*')
 	{
@@ -33,7 +33,8 @@ static const char	*parse_precision_value(const char *fmt, t_format *fmt_info, \
 	return (fmt);
 }
 
-const char	*parse_precision(const char *fmt, t_format *fmt_info, va_list args)
+const char	*parse_precision(const char *fmt, t_format_raw *fmt_info, \
+	va_list args)
 {
 	if (*fmt == '.')
 	{

@@ -1,42 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   format_number.c                                    :+:      :+:    :+:   */
+/*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yusuzuki <yusuzuki@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/03 11:59:32 by yusuzuki          #+#    #+#             */
-/*   Updated: 2025/11/04 19:27:29 by yusuzuki         ###   ########.fr       */
+/*   Created: 2025/11/04 17:24:46 by yusuzuki          #+#    #+#             */
+/*   Updated: 2025/11/04 17:30:56 by yusuzuki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*format_number(const char *num_str, long n, t_format fmt)
+static size_t	count_digit_unsigned(unsigned int n)
 {
-	char	*res;
-	char	*tmp;
-	char	*next;
+	size_t	count;
 
-	if (fmt.specifier == 'x' || fmt.specifier == 'X')
-		tmp = apply_hash(num_str, fmt);
-	else
-		tmp = ft_strdup(num_str);
-	if (!tmp)
-		return (NULL);
-	if (fmt.specifier != 'p')
+	count = 0;
+	if (n == 0)
+		return (1);
+	while (n != 0)
 	{
-		next = apply_sign(tmp, n, fmt);
-		free(tmp);
-		if (!next)
-			return (NULL);
-		tmp = next;
+		n /= 10;
+		count++;
 	}
-	next = apply_precision(tmp, fmt);
-	free(tmp);
-	if (!next)
+	return (count);
+}
+
+char	*ft_itoa_2(int n)
+{
+	unsigned int	num;
+	size_t			size;
+	char			*res;
+
+	if (n < 0)
+		num = -n;
+	else
+		num = n;
+	size = count_digit_unsigned(num);
+	res = malloc(sizeof(char) * (size + 1));
+	if (!res)
 		return (NULL);
-	res = apply_padding(next, fmt);
-	free(next);
+	res[size] = '\0';
+	while (size-- > 0)
+	{
+		res[size] = (num % 10) + '0';
+		num /= 10;
+	}
 	return (res);
 }

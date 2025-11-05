@@ -6,7 +6,7 @@
 /*   By: yusuzuki <yusuzuki@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 13:59:06 by yusuzuki          #+#    #+#             */
-/*   Updated: 2025/11/03 14:10:45 by yusuzuki         ###   ########.fr       */
+/*   Updated: 2025/11/04 16:54:06 by yusuzuki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ char	*format_string(const char *str, t_format fmt)
 	tmp = apply_precision_string(str, fmt);
 	if (!tmp)
 		return (NULL);
-	if (ft_strncmp(tmp, "(null)", 6) == 0)
-		return (tmp);
 	res = apply_padding(tmp, fmt);
 	free(tmp);
 	if (!res)

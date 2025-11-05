@@ -6,7 +6,7 @@
 /*   By: yusuzuki <yusuzuki@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 12:15:05 by yusuzuki          #+#    #+#             */
-/*   Updated: 2025/11/03 14:09:46 by yusuzuki         ###   ########.fr       */
+/*   Updated: 2025/11/04 17:10:21 by yusuzuki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,22 @@ static char	*ft_strldup(const char *src, size_t len)
 
 char	*apply_precision_string(const char *str, t_format fmt)
 {
-	size_t	len;
+	size_t		len;
+	const char	*null_str = "(null)";
 
-	if (!str)
-		return (ft_strdup("(null)"));
+	if (str == NULL)
+	{
+		if (fmt.precision_specified)
+		{
+			if (fmt.precision == 0 || fmt.precision < 6)
+				return (ft_strdup(""));
+			len = ft_strlen(null_str);
+			if (fmt.precision < len)
+				len = fmt.precision;
+			return (ft_strldup(null_str, len));
+		}
+		return (ft_strdup(null_str));
+	}
 	len = ft_strlen(str);
 	if (fmt.precision_specified && fmt.precision < len)
 		len = fmt.precision;

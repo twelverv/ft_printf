@@ -6,13 +6,13 @@
 /*   By: yusuzuki <yusuzuki@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 11:37:49 by yusuzuki          #+#    #+#             */
-/*   Updated: 2025/10/24 11:47:07 by yusuzuki         ###   ########.fr       */
+/*   Updated: 2025/11/04 15:13:51 by yusuzuki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-const char	*parse_width(const char *fmt, t_format *fmt_info, va_list args)
+const char	*parse_width(const char *fmt, t_format_raw *fmt_info, va_list args)
 {
 	if (*fmt == '*')
 	{

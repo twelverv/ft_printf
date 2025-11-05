@@ -6,7 +6,7 @@
 /*   By: yusuzuki <yusuzuki@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 19:36:49 by yusuzuki          #+#    #+#             */
-/*   Updated: 2025/11/03 14:18:09 by yusuzuki         ###   ########.fr       */
+/*   Updated: 2025/11/04 19:34:36 by yusuzuki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,24 +55,21 @@ char	*apply_precision(const char *num_str, t_format fmt)
 	char	sign;
 	char	*res;
 
+	if (fmt.precision_specified && fmt.precision == 0 && num_str[0] == '0')
+		return (ft_strdup(""));
 	sign = 0;
 	num_len = ft_strlen(num_str);
 	if (num_str[0] == '-' || num_str[0] == '+')
 	{
 		sign = num_str[0];
-		num_str ++;
-		num_len --;
+		num_str++;
+		num_len--;
 	}
-	if (fmt.precision_specified && fmt.precision == 0 && num_len == 1 && \
-		num_str[0] == '0')
+	if (fmt.precision_specified && fmt.precision == 0 && num_len == 1 && num_str[0] == '0')
 		num_len = 0;
 	pad_len = get_padlen(num_len, fmt);
-	if (sign)
-		res = malloc(num_len + pad_len + 2);
-	else
-		res = malloc(num_len + pad_len + 1);
+	res = malloc(num_len + pad_len + 1 + (sign != 0));
 	if (!res)
 		return (NULL);
-	res = strdup_with_sign(res, num_str, sign, pad_len);
-	return (res);
+	return (strdup_with_sign(res, num_str, sign, pad_len));
 }

@@ -6,7 +6,7 @@
 /*   By: yusuzuki <yusuzuki@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 20:33:23 by yusuzuki          #+#    #+#             */
-/*   Updated: 2025/11/04 10:24:18 by yusuzuki         ###   ########.fr       */
+/*   Updated: 2025/11/04 18:43:24 by yusuzuki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ char	*ft_utoa(unsigned int n)
 
 	len = count_digits_unsigned(n);
 	res = malloc(sizeof(char) * (len + 1));
+	res[len] = '\0';
 	while (len--)
 	{
 		res[len] = (n % 10) + '0';
@@ -80,16 +81,4 @@ char	*ft_itoa_base(unsigned long long n, int base, int uppercase)
 		n /= base;
 	}
 	return (res);
-}
-
-int	put_strlen(const char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		i ++;
-	}
-	return (i);
 }
