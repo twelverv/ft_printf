@@ -13,6 +13,7 @@ SRCS = srcs/parser/normalized_format.c \
 	srcs/print/print_percent_with_format.c \
 	srcs/utils/format_number.c \
 	srcs/utils/format_string.c \
+	srcs/utils/format_char.c \
 	srcs/utils/utils.c \
 	srcs/utils/utils2.c \
 	srcs/utils/format_utils/apply_hash.c \
@@ -25,7 +26,7 @@ SRCS = srcs/parser/normalized_format.c \
 OBJS = $(SRCS:.c=.o)
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -Iincludes -I$(LIBFT_DIR)
+CFLAGS = -Wall -Wextra -Werror -fPIC -Iincludes -I$(LIBFT_DIR)
 
 LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a

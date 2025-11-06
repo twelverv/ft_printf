@@ -6,13 +6,13 @@
 /*   By: yusuzuki <yusuzuki@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 15:05:31 by yusuzuki          #+#    #+#             */
-/*   Updated: 2025/11/04 16:58:42 by yusuzuki         ###   ########.fr       */
+/*   Updated: 2025/11/05 11:11:01 by yusuzuki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int nil_pointer(t_format fmt)
+static int	nil_pointer(t_format fmt)
 {
 	char	*res;
 	int		count;
@@ -24,7 +24,6 @@ static int nil_pointer(t_format fmt)
 	free(res);
 	return (count);
 }
-
 
 int	print_pointer_with_format(void *ptr, t_format fmt)
 {

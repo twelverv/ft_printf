@@ -6,7 +6,7 @@
 /*   By: yusuzuki <yusuzuki@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 22:32:09 by yusuzuki          #+#    #+#             */
-/*   Updated: 2025/11/04 17:29:22 by yusuzuki         ###   ########.fr       */
+/*   Updated: 2025/11/05 11:12:01 by yusuzuki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ char		*apply_padding(const char *str, t_format fmt);
 
 //format
 char		*format_number(const char *num_str, long n, t_format fmt);
-char		*format_char(char c, t_format fmt);
+int			format_char(t_format fmt, char c, int pad_len);
 char		*format_string(const char *str, t_format fmt);
 
 //utils

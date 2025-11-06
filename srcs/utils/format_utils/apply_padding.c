@@ -6,16 +6,15 @@
 /*   By: yusuzuki <yusuzuki@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 20:28:00 by yusuzuki          #+#    #+#             */
-/*   Updated: 2025/11/04 18:25:01 by yusuzuki         ###   ########.fr       */
+/*   Updated: 2025/11/05 11:20:10 by yusuzuki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-
 static size_t	fill_padding(char *dest, size_t count, char c, size_t pad_len)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (i < pad_len)
@@ -28,7 +27,7 @@ static size_t	fill_padding(char *dest, size_t count, char c, size_t pad_len)
 
 static size_t	copy_str_with_offset(char *dest, const char *src, size_t count)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (src[i])
@@ -39,17 +38,10 @@ static size_t	copy_str_with_offset(char *dest, const char *src, size_t count)
 	return (i);
 }
 
-static size_t	get_padlen(size_t content_len, size_t width)
-{
-	if (width > content_len)
-		return (width - content_len);
-	return (0);
-}
-
 static size_t	pad_number_with_zeros(char *res, size_t pad_len, \
 	const char *str)
 {
-	size_t count;
+	size_t	count;
 
 	count = 0;
 	if (str[0] == '-' || str[0] == '+')
@@ -67,23 +59,15 @@ static size_t	pad_number_with_zeros(char *res, size_t pad_len, \
 	return (count);
 }
 
-char	*apply_padding(const char *str, t_format fmt)
+int	last_padding(char *res, const char *str, char c, t_format fmt)
 {
-	size_t	len;
+	int		count;
 	size_t	pad_len;
-	size_t	count;
-	char	c;
-	char	*res;
 
-	len = ft_strlen(str);
-	pad_len = get_padlen(len, fmt.width);
-	if (fmt.padding == PAD_ZERO)
-		c = '0';
+	if (fmt.width > ft_strlen(str))
+		pad_len = fmt.width - ft_strlen(str);
 	else
-		c = ' ';
-	res = malloc(len + pad_len + 1);
-	if (!res)
-		return (NULL);
+		pad_len = 0;
 	count = 0;
 	if (fmt.align == ALIGN_RIGHT)
 	{
@@ -100,6 +84,31 @@ char	*apply_padding(const char *str, t_format fmt)
 		count += copy_str_with_offset(res, str, count);
 		count += fill_padding(res, count, ' ', pad_len);
 	}
+	return (count);
+}
+
+char	*apply_padding(const char *str, t_format fmt)
+{
+	size_t	len;
+	size_t	pad_len;
+	size_t	count;
+	char	c;
+	char	*res;
+
+	len = ft_strlen(str);
+	if (fmt.width > len)
+		pad_len = fmt.width - len;
+	else
+		pad_len = 0;
+	if (fmt.padding == PAD_ZERO)
+		c = '0';
+	else
+		c = ' ';
+	res = malloc(len + pad_len + 1);
+	if (!res)
+		return (NULL);
+	count = 0;
+	count += last_padding(res, str, c, fmt);
 	res[count] = '\0';
 	return (res);
 }

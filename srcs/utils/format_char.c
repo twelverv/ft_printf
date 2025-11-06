@@ -1,40 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_string_with_format.c                         :+:      :+:    :+:   */
+/*   format_char.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yusuzuki <yusuzuki@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/03 14:38:37 by yusuzuki          #+#    #+#             */
-/*   Updated: 2025/11/05 11:14:07 by yusuzuki         ###   ########.fr       */
+/*   Created: 2025/11/05 11:04:43 by yusuzuki          #+#    #+#             */
+/*   Updated: 2025/11/05 11:13:15 by yusuzuki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	print_string_with_format(const char *str, t_format fmt)
+int	format_char(t_format fmt, char c, int pad_len)
 {
-	char	*res;
-	char	*tmp;
-	ssize_t	reply;
-	int		count;
+	int	count;
+	int	i;
 
-	res = format_string(str, fmt);
 	count = 0;
-	reply = 0;
-	if (!res)
-		return (-1);
-	if (!res)
-		return (0);
-	tmp = res;
-	while (*tmp)
+	if (fmt.align == ALIGN_RIGHT)
 	{
-		reply = write(1, tmp, 1);
-		if (reply == -1)
-			return (-1);
-		tmp ++;
-		count += reply;
+		i = 0;
+		while (i < pad_len)
+		{
+			count += write(1, " ", 1);
+			i++;
+		}
+		count += write(1, &c, 1);
 	}
-	free(res);
+	else
+	{
+		count += write(1, &c, 1);
+		i = 0;
+		while (i < pad_len)
+		{
+			count += write(1, " ", 1);
+			i++;
+		}
+	}
 	return (count);
 }
