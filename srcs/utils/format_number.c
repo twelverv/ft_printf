@@ -6,7 +6,7 @@
 /*   By: yusuzuki <yusuzuki@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 11:59:32 by yusuzuki          #+#    #+#             */
-/*   Updated: 2025/11/04 19:27:29 by yusuzuki         ###   ########.fr       */
+/*   Updated: 2025/11/10 14:20:39 by yusuzuki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,18 @@ char	*format_number(const char *num_str, long n, t_format fmt)
 	char	*tmp;
 	char	*next;
 
-	if (fmt.specifier == 'x' || fmt.specifier == 'X')
+	if ((fmt.specifier == 'x' || fmt.specifier == 'X') && n != 0)
 		tmp = apply_hash(num_str, fmt);
 	else
 		tmp = ft_strdup(num_str);
 	if (!tmp)
 		return (NULL);
-	if (fmt.specifier != 'p')
+	next = apply_precision(tmp, fmt);
+	free(tmp);
+	if (!next)
+		return (NULL);
+	tmp = next;
+	if (fmt.specifier == 'd' || fmt.specifier == 'i')
 	{
 		next = apply_sign(tmp, n, fmt);
 		free(tmp);
@@ -32,11 +37,6 @@ char	*format_number(const char *num_str, long n, t_format fmt)
 			return (NULL);
 		tmp = next;
 	}
-	next = apply_precision(tmp, fmt);
-	free(tmp);
-	if (!next)
-		return (NULL);
-	res = apply_padding(next, fmt);
-	free(next);
-	return (res);
+	res = apply_padding(tmp, fmt);
+	return (free(tmp), res);
 }

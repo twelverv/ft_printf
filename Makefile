@@ -21,7 +21,7 @@ SRCS = srcs/parser/normalized_format.c \
 	srcs/utils/format_utils/apply_precision_string.c \
 	srcs/utils/format_utils/apply_precision.c \
 	srcs/utils/format_utils/apply_sign.c \
-	ft_printf.c
+	ft_printf.c \
 
 OBJS = $(SRCS:.c=.o)
 
