@@ -6,7 +6,7 @@
 /*   By: yusuzuki <yusuzuki@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 17:24:46 by yusuzuki          #+#    #+#             */
-/*   Updated: 2025/11/04 17:30:56 by yusuzuki         ###   ########.fr       */
+/*   Updated: 2025/11/11 13:22:38 by yusuzuki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,18 @@ char	*ft_itoa_2(int n)
 		num /= 10;
 	}
 	return (res);
+}
+
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	int	i;
+
+	i = 0;
+	while (s1[i] != '\0' || s2[i] != '\0')
+	{
+		if (s1[i] != s2[i])
+			return ((unsigned char) s1[i] - (unsigned char)s2[i]);
+		i ++;
+	}
+	return (0);
 }

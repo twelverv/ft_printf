@@ -6,7 +6,7 @@
 /*   By: yusuzuki <yusuzuki@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 22:32:09 by yusuzuki          #+#    #+#             */
-/*   Updated: 2025/11/05 11:12:01 by yusuzuki         ###   ########.fr       */
+/*   Updated: 2025/11/11 13:23:33 by yusuzuki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ char		*format_string(const char *str, t_format fmt);
 char		*ft_utoa(unsigned int n);
 char		*ft_itoa_base(unsigned long long n, int base, int uppercase);
 char		*ft_itoa_2(int n);
+int			ft_strcmp(const char *s1, const char *s2);
 
 int			ft_printf(const char *fmt, ...);
 

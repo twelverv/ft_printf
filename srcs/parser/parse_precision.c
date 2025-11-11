@@ -6,7 +6,7 @@
 /*   By: yusuzuki <yusuzuki@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 11:37:37 by yusuzuki          #+#    #+#             */
-/*   Updated: 2025/11/04 17:07:18 by yusuzuki         ###   ########.fr       */
+/*   Updated: 2025/11/11 13:24:12 by yusuzuki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,15 @@ const char	*parse_precision(const char *fmt, t_format_raw *fmt_info, \
 		fmt_info->precision_specified = 1;
 		fmt_info->precision = 0;
 		if (*fmt == '*' || (*fmt >= '0' && *fmt <= '9'))
+		{
 			fmt = parse_precision_value(fmt, fmt_info, args);
+			fmt_info->flag_zero = 0;
+		}
+		else
+		{
+			fmt_info->precision = 0;
+			fmt_info->flag_zero = 0;
+		}
 	}
 	return (fmt);
 }

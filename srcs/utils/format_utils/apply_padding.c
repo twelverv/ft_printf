@@ -6,7 +6,7 @@
 /*   By: yusuzuki <yusuzuki@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 20:28:00 by yusuzuki          #+#    #+#             */
-/*   Updated: 2025/11/10 14:28:36 by yusuzuki         ###   ########.fr       */
+/*   Updated: 2025/11/11 13:37:28 by yusuzuki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static size_t	copy_str_with_offset(char *dest, const char *src, size_t count)
 	return (i);
 }
 
-static size_t	pad_number_with_zeros(char *res, size_t pad_len, \
+static size_t	pad_number_with_zeros(char *res, size_t pad_len, 
 	const char *str)
 {
 	size_t	count;
