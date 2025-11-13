@@ -6,13 +6,13 @@
 /*   By: yusuzuki <yusuzuki@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 17:14:14 by yusuzuki          #+#    #+#             */
-/*   Updated: 2025/11/04 15:29:42 by yusuzuki         ###   ########.fr       */
+/*   Updated: 2025/11/12 11:42:34 by yusuzuki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	apply_format(t_format fmt_info, va_list args)
+static int	apply_format(t_format fmt_info, va_list args)
 {
 	if (fmt_info.specifier == 'c')
 		return (print_char_with_format(va_arg(args, int), fmt_info));
